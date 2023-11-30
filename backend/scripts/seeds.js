@@ -12,9 +12,9 @@ const Comment = mongoose.model("Comment");
 async function seedDatabase() {
     for (let i = 0; i < 100; i++) {
       // add user
-      const user = { username: = `user${i}`, email: `user${i}@gmail.com` };
+      const user = { username: `user${i}`, email: `user${i}@gmail.com` };
       const options = { upsert: true, new: true };
-      const createdUser = await User.findOneAndUpdate(user, {}, options);
+      const createdUser = await User.create(user);
       
       // add item to user
       const item = {
@@ -23,7 +23,7 @@ async function seedDatabase() {
         description: `description ${i}`,
         seller: createdUser
       };
-      const createdItem = await Item.findOneAndUpdate(item, {}, options);
+      const createdItem = await Item.create(item);
       
       // add comments to item
       if (!createdItem?.comments?.length) {
