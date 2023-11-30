@@ -1,4 +1,5 @@
 //TODO: seeds script should come here, so we'll be able to put some data in our local env
+
 const mongoose = require("mongoose");
 const connection = process.env.MONGODB_URI;
 mongoose.connect(connection);
@@ -11,7 +12,7 @@ const Comment = mongoose.model("Comment");
 async function seedDatabase() {
     for (let i = 0; i < 100; i++) {
       // add user
-      const user = { username: `user${i}`, email: `user${i}@gmail.com` };
+      const user = { username: = `user${i}`, email: `user${i}@gmail.com` };
       const options = { upsert: true, new: true };
       const createdUser = await User.findOneAndUpdate(user, {}, options);
       
@@ -20,7 +21,7 @@ async function seedDatabase() {
         slug: `slug${i}`,
         title: `title ${i}`,
         description: `description ${i}`,
-        seller: createdUser,
+        seller: createdUser
       };
       const createdItem = await Item.findOneAndUpdate(item, {}, options);
       
